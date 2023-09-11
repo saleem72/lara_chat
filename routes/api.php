@@ -30,13 +30,14 @@ Route::group([
     'middleware' => ['auth:sanctum']
 ], function() {
     Route::get('rooms', [UserController::class, 'userRooms']);
+    Route::post('send_message', [UserController::class, 'sendMessage']);
 });
 
 Route::group([
     'prefix' => 'admin',
     'namespace' => 'App\Http\Controllers\Api\V1',
     'middleware' => ['auth:sanctum']
-], function() {
+], function() { //send_message
     Route::get('all_rooms', [AdminController::class, 'allRooms']);
     Route::post('message_to_chat', [AdminController::class, 'sendMessageToChat']);
 });

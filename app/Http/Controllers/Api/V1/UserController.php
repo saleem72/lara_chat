@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use App\Events\PlaygroundEvent;
 use Illuminate\Http\Request;
 use App\Services\AppPaginator;
 use App\Http\Controllers\Controller;
@@ -43,5 +44,15 @@ class UserController extends Controller
             data: Null
         );
         return response()->json($data->toArray(), 500);
+    }
+
+    public function sendMessage() {
+        event(new PlaygroundEvent());
+        $data = new CustomJson(
+            status: true,
+            message: 'Event was sent.',
+            data: Null
+        );
+        return response()->json($data->toArray(), 200);
     }
 }
